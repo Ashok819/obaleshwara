@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[obleshwara] – Your Trusted Medical Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Open Sans', sans-serif; }
+    body { line-height: 1.6; color: #333; }
+
+    /* Header */
+    header {
+      background: #2e8b57;
+      color: #fff;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    header nav a {
+      color: #fff;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: url('https://images.unsplash.com/photo-1588776814546-985116b22d49?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      color: #fff;
+      text-align: center;
+      padding: 120px 20px;
+    }
+    .hero h1 { font-size: 48px; margin-bottom: 15px; }
+    .hero p { font-size: 20px; margin-bottom: 25px; }
+    .hero a {
+      background: #fff;
+      color: #2e8b57;
+      padding: 12px 25px;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+    .hero a:hover { background: #f0f0f0; }
+
+    /* Animated Character Chat */
+    .chat-container {
+      text-align: center;
+      padding: 20px;
+      position: relative;
+    }
+    .animated-character {
+      position: relative;
+      width: 120px;
+      height: 150px;
+      margin: 0 auto 20px;
+      background-color: #fff;
+      border-radius: 50% 50% 0 0;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+    }
+    .animated-character::before {
+      content: '';
+      position: absolute;
+      width: 40px;
+      height: 80px;
+      background-color: #ffffff00;
+      top: -10px;
+      left: 40px;
+      transform-origin: bottom left;
+      animation: wave 2s infinite;
+      z-index: 1;
+    }
+    .animated-character::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      top: 50%;
+      left: 50%;
+      border-radius: 50%;
+      background-color: rgba(37, 211, 102, 0.3);
+      transform: translate(-50%, -50%);
+      animation: pulse 2s infinite ease-out;
+      z-index: -1;
+    }
+    .animated-character a {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #25D366;
+      color: rgb(255, 255, 255);
+      padding: 10px 20px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform 0.3s ease;
+    }
+    .animated-character a:hover {
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+    .animated-character span {
+      display: block;
+      font-size: 0.9em;
+    }
+
+    @keyframes wave {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(-30deg); }
+    }
+    @keyframes pulse {
+      0% { width: 0; height: 0; opacity: 1; }
+      100% { width: 200px; height: 200px; opacity: 0; }
+    }
+
+    /* Sections */
+    section { padding: 80px 20px; }
+    h2 { text-align: center; margin-bottom: 50px; color: #2e8b57; }
+
+    .about, .contact { max-width: 900px; margin: 0 auto; text-align: center; }
+    .about p, .contact p { font-size: 18px; }
+
+    /* Products */
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+    .product-card {
+      flex: 1 1 200px;
+      max-width: 250px;
+      text-align: center;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      transition: transform 0.3s;
+      background: #fff;
+    }
+    .product-card:hover { transform: translateY(-5px); }
+    .product-card img { width: 100px; margin-bottom: 15px; }
+
+    /* Blog */
+    .blog-posts {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+    .blog-post {
+      flex: 1 1 250px;
+      max-width: 300px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .blog-post img { width: 100%; height: 180px; object-fit: cover; }
+    .blog-post-content { padding: 15px; }
+    .blog-post-content h3 { margin-bottom: 10px; font-size: 18px; }
+    .blog-post-content p { font-size: 16px; }
+
+    /* Contact */
+    .contact iframe { width: 100%; height: 300px; border: 0; margin-bottom: 20px; }
+
+    /* Footer */
+    footer {
+      background: #2e8b57;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    /* WhatsApp Floating Button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      text-align: center;
+      font-size: 30px;
+      z-index: 1000;
+      box-shadow: 2px 2px 5px #888;
+    }
+    .whatsapp-float img {
+      margin-top: 15px;
+      width: 30px;
+      height: 30px;
+    }
+
+    @media(max-width: 768px){
+      .products, .blog-posts { flex-direction: column; align-items: center; }
+      .hero h1 { font-size: 36px; }
+      .hero p { font-size: 18px; }
+      .animated-character { width: 100px; height: 130px; }
+      .animated-character a { padding: 8px 15px; }
+      .animated-character::after { width: 150px; height: 150px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo"><h1>obleshwara medical Store</h1></div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#about">About Us</a>
+      <a href="#products">Products</a>
+      <a href="#blog">Health Tips</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section with Animated Character -->
+  <section class="hero">
+    <h1>Your Trusted Neighborhood Medical Store</h1>
+    <p>Providing quality medicines and health support </p>
+    <div class="chat-container">
+      <div class="animated-character">
+        <a href="https://wa.me/919901225099?text=Hello%20I%20want%20to%20know%20about%20your%20medicines" target="_blank">
+          <span>Chat with me!</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <h2>About Our Store</h2>
+    <p>At Hobleshwara medical and general Store, we care about your health.</p>
+  </section>
+
+  <!-- Products Section -->
+  <section id="products">
+    <h2>Our Products & Services</h2>
+    <div class="products">
+      <div class="product-card">
+        <img src="https://img.icons8.com/fluency/96/pill.png" alt="Prescription Medicines">
+        <h3>Prescription Medicines</h3>
+      </div>
+      <div class="product-card">
+        <img src="https://img.icons8.com/fluency/96/medical-doctor.png" alt="OTC Medicines">
+        <h3>Over-the-Counter (OTC)</h3>
+      </div>
+      <div class="product-card">
+        <img src="https://img.icons8.com/?size=100&id=SZTMDiLYO7l2&format=png&color=000000" alt="Supplements">
+        <h3>Health Supplements</h3>
+      </div>
+      <div class="product-card">
+        <img src="https://img.icons8.com/?size=100&id=eNGCFsHPoqmP&format=png&color=000000" alt="Medical Devices">
+        <h3>Medical Devices</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Section -->
+  <section id="blog">
+    <h2>Health Tips & Updates</h2>
+    <div class="blog-posts">        
+      <div class="blog-post">
+        <div class="blog-post-content">
+          <h3><a href="https://www.health.harvard.edu/blog/5-timeless-habits-for-better-health-202509243106">5 Tips for a Healthy Lifestyle</a></h3>
+          <p>Learn how to maintain your daily health routine and keep diseases at bay.</p>
+        </div>
+      </div>
+      <div class="blog-post">
+        <div class="blog-post-content">
+          <h3><a href="">Seasonal Health Tips</a></h3>
+          <p>Protect yourself from seasonal illnesses with these simple tips.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <h2>Contact Us</h2>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3885.4963549899735!2d77.96386947321294!3d13.131060811365915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTPCsDA3JzUxLjgiTiA3N8KwNTcnNTkuMiJF!5e0!3m2!1sen!2sin!4v1760417062737!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <p>Address: lakshmisagara gate, kolar</p>
+    <p>Phone: +91 9901225099</p>
+    <p>Hours: Mon-sun 9:00 AM – 9:00 PM </p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>©️ obleshwara medical Store. All rights reserved.</p>
+  </footer>
+
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/9901225099?text=Hello%20I%20want%20to%20know%20about%20your%20medicines" class="whatsapp-float" target="_blank">
+    <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png"/>
+  </a>
+
+</body>
+</html>
