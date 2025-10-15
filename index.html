@@ -1,201 +1,382 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
 <head>
-    <title>Navigation Bar with Chat Animation</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Obleshwara Medical Store – Your Trusted Medical Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-green: #238553;
+      --accent-light: #f4fbf7;
+      --accent-dark: #23543d;
+      --header-height: 64px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Open Sans', sans-serif; }
+    body { background: var(--accent-light); color: #222; line-height: 1.6; }
+    header {
+      background: var(--main-green);
+      color: #fff;
+      padding: 20px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      min-height: var(--header-height);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .logo h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    header nav {
+      display: flex;
+      gap: 30px;
+    }
+    header nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 3px 0;
+      transition: border-bottom 0.2s;
+      border-bottom: 2px solid transparent;
+    }
+    header nav a:hover {
+      border-bottom: 2px solid #fff;
+    }
+    .hero {
+      background: linear-gradient(rgba(35,133,83,0.75), rgba(35,133,83,0.4)), url('https://images.unsplash.com/photo-1588776814546-985116b22d49?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      color: #fff;
+      text-align: center;
+      padding: 100px 20px 60px 20px;
+      margin-bottom: 0;
+      position: relative;
+    }
+    .hero h1 { font-size: 3rem; margin-bottom: 16px; font-weight: 700; }
+    .hero p { font-size: 1.3rem; margin-bottom: 32px; }
+    .hero a {
+      background: #fff;
+      color: var(--main-green);
+      padding: 14px 32px;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 5px;
+      box-shadow: 0 2px 8px rgba(35,133,83,0.13);
+      font-size: 1rem;
+      margin-top: 8px;
+      transition: background 0.25s, color 0.25s;
+      display: inline-block;
+    }
+    .hero a:hover { background: #eee; color: var(--accent-dark); }
 
-        body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f4f4f4;
-        }
+    /* Animated Chat Character */
+    .chat-container {
+      text-align: center;
+      padding: 24px 0 0 0;
+    }
+    .animated-character {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 12px auto;
+      background: #fff;
+      border-radius: 50% 50% 0 0;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(35,133,83,0.14);
+      animation: pulse 1.8s infinite ease-in;
+    }
+    .animated-character::before {
+      content: '';
+      position: absolute;
+      width: 30px;
+      height: 70px;
+      background: #fff;
+      top: -8px;
+      left: 45px;
+      border-radius: 50% 50% 0 0;
+      transform-origin: bottom left;
+      animation: wave 2s infinite;
+      z-index: 2;
+    }
+    .animated-character::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      top: 50%;
+      left: 50%;
+      border-radius: 50%;
+      background: rgba(35,133,83,0.08);
+      transform: translate(-50%, -50%);
+      animation: pulse-outer 2s infinite ease-out;
+      z-index: -1;
+    }
+    .animated-character a {
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #25D366;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: transform 0.25s;
+      box-shadow: 0 2px 8px rgba(35,133,83,0.13);
+    }
+    .animated-character a:hover {
+      transform: translate(-50%, -50%) scale(1.07);
+      background: #218e45;
+    }
+    .animated-character span {
+      display: block;
+      font-size: 0.93em;
+      margin-top: 4px;
+    }
+    @keyframes wave {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(-25deg); }
+    }
+    @keyframes pulse-outer {
+      0% { width: 0; height: 0; opacity: 0.6;}
+      60% {width: 180px; height: 180px; opacity: 0.0;}
+      100% {width: 180px; height: 180px; opacity: 0.0;}
+    }
+    @keyframes pulse {
+      0% {box-shadow: 0 0 0 0 rgba(35,133,83,0.12);}
+      50% {box-shadow: 0 0 24px 8px rgba(35,133,83,0.22);}
+      100% {box-shadow: 0 0 0 0 rgba(35,133,83,0.12);}
+    }
 
-        /* Placeholder for oblashwarra section */
-        #oblashwarra {
-            height: 100px;
-            background-color: #333;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            text-align: center;
-        }
+    /* Section Styles */
+    section { padding: 56px 20px 0 20px; }
+    h2 { text-align: center; margin-bottom: 36px; color: var(--main-green); font-weight: 700; font-size: 2rem;}
+    .about, .contact { max-width: 860px; margin: 0 auto; text-align: center;}
+    .about p, .contact p { font-size: 1.18rem; }
 
-        /* Navbar styling */
-        .navbar {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: rgba(0, 0, 0, 0.5); /* Transparent background */
-            padding: 10px 0;
-            width: 100%;
-            position: relative;
-        }
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 28px;
+      margin-top: 8px;
+    }
+    .product-card {
+      flex: 1 1 160px;
+      max-width: 230px;
+      text-align: center;
+      padding: 22px 16px;
+      border: 1px solid #e2e2e2;
+      border-radius: 9px;
+      transition: transform 0.19s, box-shadow 0.19s;
+      background: #fff;
+      box-shadow: 0 1px 8px rgba(35,133,83,0.04);
+      cursor: pointer;
+    }
+    .product-card:hover {
+      transform: translateY(-4px) scale(1.04);
+      box-shadow: 0 2px 16px rgba(35,133,83,0.11);
+      border: 1px solid var(--main-green);
+    }
+    .product-card img { width: 80px; margin-bottom: 10px; }
+    .product-card h3 { font-size: 1.13rem; font-weight: 600; color: var(--main-green); margin-bottom: 4px; }
 
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            transition: background-color 0.3s;
-        }
+    /* Blog */
+    .blog-posts {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 28px;
+      margin-top: 10px;
+    }
+    .blog-post {
+      flex: 1 1 240px;
+      max-width: 320px;
+      border: 1px solid #e2e2e2;
+      border-radius: 9px;
+      background: #fff;
+      overflow: hidden;
+      box-shadow: 0 1px 8px rgba(35,133,83,0.04);
+      transition: box-shadow 0.22s;
+    }
+    .blog-post:hover {
+      box-shadow: 0 2px 16px rgba(35,133,83,0.11);
+      border: 1px solid var(--main-green);
+    }
+    .blog-post img { width: 100%; height: 170px; object-fit: cover; }
+    .blog-post-content { padding: 14px 16px;}
+    .blog-post-content h3 { margin-bottom: 8px; font-size: 1.01rem; font-weight: 600; color: var(--main-green); }
+    .blog-post-content a { color: var(--main-green); text-decoration: none; }
+    .blog-post-content a:hover { text-decoration: underline;}
+    .blog-post-content p { font-size: 1rem; }
 
-        .navbar a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
-        }
+    /* Contact Section */
+    .contact iframe {
+      width: 100%;
+      min-height: 250px;
+      max-width: 660px;
+      margin: 0 auto 20px auto;
+      border: none;
+      border-radius: 9px;
+      box-shadow: 0 1px 8px rgba(35,133,83,0.06);
+      display: block;
+    }
 
-        /* Chat Me button */
-        .chat-btn {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 5px;
-            margin-left: 20px;
-            transition: background-color 0.3s;
-        }
+    /* Footer */
+    footer {
+      background: var(--main-green);
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+    }
 
-        .chat-btn:hover {
-            background-color: #0056b3;
-        }
-
-        /* Chat window styling */
-        .chat-window {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 300px;
-            height: 400px;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            display: none; /* Hidden by default */
-        }
-
-        .chat-window.open {
-            display: block;
-            animation: slideIn 0.3s ease-in-out;
-        }
-
-        .chat-window.close {
-            animation: slideOut 0.3s ease-in-out forwards;
-        }
-
-        /* Chat window header */
-        .chat-header {
-            background-color: #007bff;
-            color: white;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .chat-header .close-btn {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-        }
-
-        .chat-content {
-            padding: 10px;
-            height: calc(100% - 50px);
-            overflow-y: auto;
-        }
-
-        /* Animation keyframes */
-        @keyframes slideIn {
-            from {
-                transform: translateY(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideOut {
-            from {
-                transform: translateY(0);
-                opacity: 1;
-            }
-            to {
-                transform: translateY(100%);
-                opacity: 0;
-            }
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 720px) {
-            .navbar {
-                flex-wrap: wrap;
-            }
-
-            .navbar a {
-                padding: 8px 15px;
-                font-size: 14px;
-            }
-
-            .chat-btn {
-                margin: 10px;
-            }
-        }
-    </style>
+    /* WhatsApp Floating Button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 23px;
+      right: 24px;
+      background: #25D366;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      box-shadow: 0 2px 10px #aaa;
+      z-index: 1002;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: box-shadow 0.22s, background 0.15s;
+    }
+    .whatsapp-float:hover { background: #218e45; box-shadow: 0 4px 18px #888; }
+    .whatsapp-float img {
+      width: 34px;
+      height: 34px;
+      margin: 0;
+      transform: scale(1.05);
+    }
+    @media(max-width: 900px) {
+      header, .about, .contact, section { padding: 16px; }
+      .hero h1 { font-size: 2.1rem;}
+      .hero p { font-size: 1rem; }
+      .logo h1 { font-size: 1.3rem; }
+      section { padding-top: 42px;}
+      h2 { font-size: 1.35rem; margin-bottom: 26px; }
+      .product-card { max-width: 180px;}
+      .blog-post { max-width: 95vw;}
+      .contact iframe {max-width:98vw;}
+    }
+    @media(max-width: 600px){
+      .products, .blog-posts { flex-direction: column; gap: 18px;}
+      .hero {padding: 58px 8px 34px 8px;}
+      .animated-character { width: 90px; height: 90px;}
+      .animated-character::after { width: 80px; height: 80px; }
+    }
+  </style>
 </head>
 <body>
-    <!-- Placeholder for oblashwarra section -->
-    <div id="oblashwarra">Oblashwarra Section</div>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
-        <button class="chat-btn" onclick="toggleChat()">Chat Me</button>
+  <!-- Header -->
+  <header>
+    <div class="logo"><h1>Obleshwara Medical Store</h1></div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#about">About Us</a>
+      <a href="#products">Products</a>
+      <a href="#blog">Health Tips</a>
+      <a href="#contact">Contact</a>
     </nav>
+  </header>
 
-    <!-- Chat Window -->
-    <div class="chat-window" id="chatWindow">
-        <div class="chat-header">
-            <span>Chat with Us</span>
-            <button class="close-btn" onclick="toggleChat()">×</button>
-        </div>
-        <div class="chat-content">
-            <p>Welcome to the chat! How can we help you today?</p>
-            <!-- Add more chat content here as needed -->
-        </div>
+  <!-- Hero Section with Animated Character -->
+  <section class="hero">
+    <h1>Your Trusted Neighborhood Medical Store</h1>
+    <p>Providing quality medicines and health support</p>
+    <div class="chat-container">
+      <div class="animated-character" title="Chat instantly on WhatsApp">
+        <a href="https://wa.me/911234567890?text=Hello%20I%20want%20to%20know%20about%20your%20medicines" target="_blank" aria-label="Chat with us on WhatsApp">
+          <span>Chat with us!</span>
+        </a>
+      </div>
     </div>
+  </section>
 
-    <script>
-        function toggleChat() {
-            const chatWindow = document.getElementById('chatWindow');
-            if (chatWindow.classList.contains('open')) {
-                chatWindow.classList.remove('open');
-                chatWindow.classList.add('close');
-                setTimeout(() => {
-                    chatWindow.style.display = 'none';
-                    chatWindow.classList.remove('close');
-                }, 300); // Match animation duration
-            } else {
-                chatWindow.style.display = 'block';
-                chatWindow.classList.add('open');
-            }
-        }
-    </script>
+  <!-- About Section -->
+  <section id="about" class="about">
+    <h2>About Our Store</h2>
+    <p>At Obleshwara Medical and General Store, your health is our top priority. We offer trusted advice and personalized care to every customer.</p>
+  </section>
+
+  <!-- Products Section -->
+  <section id="products">
+    <h2>Our Products & Services</h2>
+    <div class="products">
+      <div class="product-card">
+        <img src="https://img.icons8.com/fluency/96/pill.png" alt="Prescription Medicines" loading="lazy">
+        <h3>Prescription Medicines</h3>
+      </div>
+      <div class="product-card">
+        <img src="https://img.icons8.com/fluency/96/medical-doctor.png" alt="OTC Medicines" loading="lazy">
+        <h3>Over-the-Counter (OTC)</h3>
+      </div>
+      <div class="product-card">
+        <img src="https://img.icons8.com/?size=100&id=SZTMDiLYO7l2&format=png&color=000000" alt="Supplements" loading="lazy">
+        <h3>Health Supplements</h3>
+      </div>
+      <div class="product-card">
+        <img src="https://img.icons8.com/?size=100&id=eNGCFsHPoqmP&format=png&color=000000" alt="Medical Devices" loading="lazy">
+        <h3>Medical Devices</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Section -->
+  <section id="blog">
+    <h2>Health Tips & Updates</h2>
+    <div class="blog-posts">        
+      <div class="blog-post">
+        <div class="blog-post-content">
+          <h3>
+            <a href="https://www.health.harvard.edu/blog/5-timeless-habits-for-better-health-202509243106" target="_blank" rel="noopener">5 Tips for a Healthy Lifestyle</a>
+          </h3>
+          <p>Discover how daily routines and habits help in preventing diseases and improving overall well-being.</p>
+        </div>
+      </div>
+      <div class="blog-post">
+        <div class="blog-post-content">
+          <h3>
+            <a href="#">Seasonal Health Tips</a>
+          </h3>
+          <p>Stay protected from seasonal illnesses with simple, proven advice.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <h2>Contact Us</h2>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3885.4963549899735!2d77.96386947321294!3d13.131060811365915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTPCsDA3JzUxLjgiTiA3N8KwNTcnNTkuMiJF!5e0!3m2!1sen!2sin!4v1760417062737!5m2!1sen!2sin" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <p>Address: Lakshmisagara Gate, Kolar</p>
+    <p>Phone: <a href="tel:+919901225099" style="color:var(--main-green); text-decoration:none;">+91 9901225099</a></p>
+    <p>Hours: Mon–Sun, 9:00 AM – 9:00 PM</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© Obleshwara Medical Store. All rights reserved.</p>
+  </footer>
+
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/9901225099?text=Hello%20I%20want%20to%20know%20about%20your%20medicines" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+    <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp Chat" loading="lazy"/>
+  </a>
 </body>
 </html>
