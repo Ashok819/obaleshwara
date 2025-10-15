@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>[obaleshwara] – Your Trusted Medical Store</title>
+  <title>[obleshwara] – Your Trusted Medical Store</title>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Open Sans', sans-serif; }
@@ -21,12 +21,22 @@
       top: 0;
       z-index: 100;
     }
+    header .logo h1 {
+      font-size: 24px;
+    }
     header nav a {
       color: #fff;
       margin-left: 20px;
       text-decoration: none;
       font-weight: 600;
-      font-size : 16px;
+      font-size: 16px;
+    }
+
+    /* Hamburger Menu for Mobile */
+    .menu-toggle {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
     }
 
     /* Hero Section */
@@ -65,13 +75,14 @@
       overflow: hidden;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       cursor: pointer;
+      animation: bounce 1.5s infinite;
     }
     .animated-character::before {
       content: '';
       position: absolute;
       width: 40px;
       height: 80px;
-      background-color: #ffffff00;
+      background-color: #fff;
       top: -10px;
       left: 40px;
       transform-origin: bottom left;
@@ -88,7 +99,7 @@
       border-radius: 50%;
       background-color: rgba(37, 211, 102, 0.3);
       transform: translate(-50%, -50%);
-      animation: pulse 2s infinite ease-out;
+      animation: rotatePulse 2s infinite ease-out;
       z-index: -1;
     }
     .animated-character a {
@@ -97,7 +108,7 @@
       left: 50%;
       transform: translate(-50%, -50%);
       background-color: #25D366;
-      color: rgb(255, 255, 255);
+      color: white;
       padding: 10px 20px;
       border-radius: 20px;
       text-decoration: none;
@@ -116,9 +127,14 @@
       0%, 100% { transform: rotate(0deg); }
       50% { transform: rotate(-30deg); }
     }
-    @keyframes pulse {
-      0% { width: 0; height: 0; opacity: 1; }
-      100% { width: 200px; height: 200px; opacity: 0; }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes rotatePulse {
+      0% { width: 0; height: 0; opacity: 1; transform: translate(-50%, -50%) rotate(0deg); }
+      50% { width: 200px; height: 200px; opacity: 0.5; transform: translate(-50%, -50%) rotate(180deg); }
+      100% { width: 200px; height: 200px; opacity: 0; transform: translate(-50%, -50%) rotate(360deg); }
     }
 
     /* Sections */
@@ -194,6 +210,7 @@
       font-size: 30px;
       z-index: 1000;
       box-shadow: 2px 2px 5px #888;
+      animation: floatAnimation 2s infinite;
     }
     .whatsapp-float img {
       margin-top: 15px;
@@ -201,13 +218,41 @@
       height: 30px;
     }
 
-    @media(max-width: 768px){
-      .products, .blog-posts { flex-direction: column; align-items: center; }
+    @keyframes floatAnimation {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    /* Media Query for Mobile */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        padding: 10px;
+      }
+      header nav {
+        display: none;
+        width: 100%;
+        margin-top: 10px;
+      }
+      header nav.active {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      header nav a {
+        margin: 10px 0;
+        font-size: 14px;
+      }
+      .menu-toggle {
+        display: block;
+      }
       .hero h1 { font-size: 36px; }
       .hero p { font-size: 18px; }
       .animated-character { width: 100px; height: 130px; }
       .animated-character a { padding: 8px 15px; }
       .animated-character::after { width: 150px; height: 150px; }
+      .whatsapp-float { width: 50px; height: 50px; }
+      .whatsapp-float img { margin-top: 10px; width: 25px; height: 25px; }
     }
   </style>
 </head>
@@ -215,7 +260,8 @@
 
   <!-- Header -->
   <header>
-    <div class="logo"><h1>obaleshwara medical Store</h1></div>
+    <div class="logo"><h1>obleshwara medical Store</h1></div>
+    <div class="menu-toggle">☰</div>
     <nav>
       <a href="#">Home</a>
       <a href="#about">About Us</a>
@@ -231,7 +277,7 @@
     <p>Providing quality medicines and health support </p>
     <div class="chat-container">
       <div class="animated-character">
-        <a href="https://wa.me/919901225099?text=Hello%20I%20want%20to%20know%20about%20your%20medicines" target="_blank">
+        <a href="https://wa.me/911234567890?text=Hello%20I%20want%20to%20know%20about%20your%20medicines" target="_blank">
           <span>Chat with me!</span>
         </a>
       </div>
@@ -241,7 +287,7 @@
   <!-- About Section -->
   <section id="about" class="about">
     <h2>About Our Store</h2>
-    <p>At obaleshwara medical and general Store, we care about your health.</p>
+    <p>At Hobleshwara medical and general Store, we care about your health.</p>
   </section>
 
   <!-- Products Section -->
@@ -290,7 +336,7 @@
   <section id="contact" class="contact">
     <h2>Contact Us</h2>
     <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3885.4963549899735!2d77.96386947321294!3d13.131060811365915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTPCsDA3JzUxLjgiTiA3N8KwNTcnNTkuMiJF!5e0!3m2!1sen!2sin!4v1760417062737!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    <p>Address: Chakarasanahalli gate kolar</p>
+    <p>Address: lakshmisagara gate, kolar</p>
     <p>Phone: +91 9901225099</p>
     <p>Hours: Mon-sun 9:00 AM – 9:00 PM </p>
   </section>
@@ -305,6 +351,11 @@
     <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png"/>
   </a>
 
+  <script>
+    // Toggle mobile menu
+    document.querySelector('.menu-toggle').addEventListener('click', function() {
+      document.querySelector('nav').classList.toggle('active');
+    });
+  </script>
 </body>
-
 </html>
